@@ -24,7 +24,7 @@ public class ArticleController {
 
     @GetMapping("/article/new")
     public String newArticleForm() {
-        return "articles/new";
+        return "/articles/new";
     }
 
     @PostMapping("/article/create") // 생성 요청
@@ -76,12 +76,35 @@ public class ArticleController {
         model.addAttribute("articles", articles);
 
         // view에 넘겨주기
-        return "articles/list";
+        return "/articles/list";
     }
 
     @GetMapping("/img")
     public String articleImg(Model model) {
         model.addAttribute("imgPath", "/img.jpg");
         return "img";
+    }
+
+    @GetMapping("/articles/{id}/edit")
+    public String editArticle(@PathVariable Long id, Model model){
+        // id기준으로 db에 존재하는지 확인
+        Article saved = articleRepository.findById(id).orElse(null);
+
+        // 게시글을 모델에 등록
+        model.addAttribute("article", saved);
+
+        // 게시글을 view로 전달
+        return "articles/edit";
+    }
+
+    @PostMapping("/article/update")
+    public String updateArticle(ArticleForm articleForm) {
+        // dto -> entity
+
+        // entity -> repo로 db 저장
+
+        // view 출력
+
+        return "";
     }
 }
