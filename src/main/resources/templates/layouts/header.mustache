@@ -46,3 +46,12 @@
     </div>
 </nav>
 
+<!-- msg 키값이 있는 경우에만 호출이되도록 -->
+{{#msg}}
+<div class="alert alert-primary alert-dismissible">
+    {{msg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"
+        aria-label="Close"></button>
+</div>
+{{/msg}}
+
